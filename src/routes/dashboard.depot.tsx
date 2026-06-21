@@ -97,6 +97,10 @@ function DepotPage() {
           )}
         </AnimatePresence>
       </div>
+
+      <div className="mt-6">
+        <PaymentMethodsList />
+      </div>
     </div>
   );
 }
