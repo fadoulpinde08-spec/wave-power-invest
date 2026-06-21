@@ -6,6 +6,9 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { LiveTicker } from "@/components/ticker";
 import { PANELS, fmt } from "@/lib/demo-store";
+import waveLogo from "@/assets/wave.jpg.asset.json";
+import orangeLogo from "@/assets/orange-money.jpg.asset.json";
+import moovLogo from "@/assets/moov-africa.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({

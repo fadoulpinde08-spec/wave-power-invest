@@ -53,8 +53,8 @@ function RetraitPage() {
                   {METHODS.map((m) => (
                     <button key={m.id} type="button" onClick={() => setMethod(m.id)}
                       className={`rounded-xl bg-gradient-to-br ${m.color} text-white p-4 text-center transition ${method === m.id ? "ring-4 ring-primary scale-105" : "opacity-70 hover:opacity-100"}`}>
-                      <div className="text-2xl">{m.emoji}</div>
-                      <div className="mt-1 text-xs font-semibold">{m.name}</div>
+                      <div className="h-10 w-10 mx-auto rounded-lg overflow-hidden bg-white/10 ring-1 ring-white/20"><img src={m.logo} alt={m.name} className="h-full w-full object-cover" /></div>
+                      <div className="mt-2 text-xs font-semibold">{m.name}</div>
                     </button>
                   ))}
                 </div>
