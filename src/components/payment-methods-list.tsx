@@ -82,7 +82,7 @@ export function PaymentMethodsList({ mode = "deposit" }: PaymentMethodsListProps
 
             <div className="border-t border-border pt-3">
               <div className="text-xs font-semibold uppercase text-muted-foreground mb-2 flex items-center gap-2">
-                {actionIcon}
+                {isDeposit ? <ArrowDownLeft className="h-4 w-4" /> : <ArrowUpRight className="h-4 w-4" />}
                 {title} avec {m.name}
               </div>
               <ol className="space-y-1.5">
