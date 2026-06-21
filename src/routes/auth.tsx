@@ -73,8 +73,16 @@ function Auth() {
   );
 }
 
-function Field({ icon, ...rest }: { icon: React.ReactNode } & React.InputHTMLAttributes<HTMLInputElement> & { onChange: (v: string) => void; value: string }) {
-  const { onChange, ...input } = rest;
+type FieldProps = {
+  icon: React.ReactNode;
+  placeholder: string;
+  type?: string;
+  value: string;
+  required?: boolean;
+  onChange: (v: string) => void;
+};
+
+function Field({ icon, onChange, ...input }: FieldProps) {
   return (
     <div className="flex items-center gap-3 rounded-xl border border-input bg-background px-4 py-3 focus-within:ring-2 focus-within:ring-primary">
       <span className="text-muted-foreground">{icon}</span>
@@ -82,3 +90,4 @@ function Field({ icon, ...rest }: { icon: React.ReactNode } & React.InputHTMLAtt
     </div>
   );
 }
+

@@ -9,38 +9,188 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SimulateurRouteImport } from './routes/simulateur'
+import { Route as MentionsRouteImport } from './routes/mentions'
+import { Route as DecryptageRouteImport } from './routes/decryptage'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as DashboardRetraitRouteImport } from './routes/dashboard.retrait'
+import { Route as DashboardParrainageRouteImport } from './routes/dashboard.parrainage'
+import { Route as DashboardDepotRouteImport } from './routes/dashboard.depot'
 
+const SimulateurRoute = SimulateurRouteImport.update({
+  id: '/simulateur',
+  path: '/simulateur',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentionsRoute = MentionsRouteImport.update({
+  id: '/mentions',
+  path: '/mentions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DecryptageRoute = DecryptageRouteImport.update({
+  id: '/decryptage',
+  path: '/decryptage',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardRetraitRoute = DashboardRetraitRouteImport.update({
+  id: '/retrait',
+  path: '/retrait',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardParrainageRoute = DashboardParrainageRouteImport.update({
+  id: '/parrainage',
+  path: '/parrainage',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardDepotRoute = DashboardDepotRouteImport.update({
+  id: '/depot',
+  path: '/depot',
+  getParentRoute: () => DashboardRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/dashboard': typeof DashboardRouteWithChildren
+  '/decryptage': typeof DecryptageRoute
+  '/mentions': typeof MentionsRoute
+  '/simulateur': typeof SimulateurRoute
+  '/dashboard/depot': typeof DashboardDepotRoute
+  '/dashboard/parrainage': typeof DashboardParrainageRoute
+  '/dashboard/retrait': typeof DashboardRetraitRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/decryptage': typeof DecryptageRoute
+  '/mentions': typeof MentionsRoute
+  '/simulateur': typeof SimulateurRoute
+  '/dashboard/depot': typeof DashboardDepotRoute
+  '/dashboard/parrainage': typeof DashboardParrainageRoute
+  '/dashboard/retrait': typeof DashboardRetraitRoute
+  '/dashboard': typeof DashboardIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/dashboard': typeof DashboardRouteWithChildren
+  '/decryptage': typeof DecryptageRoute
+  '/mentions': typeof MentionsRoute
+  '/simulateur': typeof SimulateurRoute
+  '/dashboard/depot': typeof DashboardDepotRoute
+  '/dashboard/parrainage': typeof DashboardParrainageRoute
+  '/dashboard/retrait': typeof DashboardRetraitRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/decryptage'
+    | '/mentions'
+    | '/simulateur'
+    | '/dashboard/depot'
+    | '/dashboard/parrainage'
+    | '/dashboard/retrait'
+    | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/decryptage'
+    | '/mentions'
+    | '/simulateur'
+    | '/dashboard/depot'
+    | '/dashboard/parrainage'
+    | '/dashboard/retrait'
+    | '/dashboard'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/decryptage'
+    | '/mentions'
+    | '/simulateur'
+    | '/dashboard/depot'
+    | '/dashboard/parrainage'
+    | '/dashboard/retrait'
+    | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
+  DecryptageRoute: typeof DecryptageRoute
+  MentionsRoute: typeof MentionsRoute
+  SimulateurRoute: typeof SimulateurRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/simulateur': {
+      id: '/simulateur'
+      path: '/simulateur'
+      fullPath: '/simulateur'
+      preLoaderRoute: typeof SimulateurRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentions': {
+      id: '/mentions'
+      path: '/mentions'
+      fullPath: '/mentions'
+      preLoaderRoute: typeof MentionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/decryptage': {
+      id: '/decryptage'
+      path: '/decryptage'
+      fullPath: '/decryptage'
+      preLoaderRoute: typeof DecryptageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +198,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/retrait': {
+      id: '/dashboard/retrait'
+      path: '/retrait'
+      fullPath: '/dashboard/retrait'
+      preLoaderRoute: typeof DashboardRetraitRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/parrainage': {
+      id: '/dashboard/parrainage'
+      path: '/parrainage'
+      fullPath: '/dashboard/parrainage'
+      preLoaderRoute: typeof DashboardParrainageRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/depot': {
+      id: '/dashboard/depot'
+      path: '/depot'
+      fullPath: '/dashboard/depot'
+      preLoaderRoute: typeof DashboardDepotRouteImport
+      parentRoute: typeof DashboardRoute
+    }
   }
 }
 
+interface DashboardRouteChildren {
+  DashboardDepotRoute: typeof DashboardDepotRoute
+  DashboardParrainageRoute: typeof DashboardParrainageRoute
+  DashboardRetraitRoute: typeof DashboardRetraitRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardDepotRoute: DashboardDepotRoute,
+  DashboardParrainageRoute: DashboardParrainageRoute,
+  DashboardRetraitRoute: DashboardRetraitRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRoute: AuthRoute,
+  DashboardRoute: DashboardRouteWithChildren,
+  DecryptageRoute: DecryptageRoute,
+  MentionsRoute: MentionsRoute,
+  SimulateurRoute: SimulateurRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
