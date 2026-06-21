@@ -9,6 +9,25 @@ import { PANELS, fmt } from "@/lib/demo-store";
 import waveLogo from "@/assets/wave.jpg.asset.json";
 import orangeLogo from "@/assets/orange-money.jpg.asset.json";
 import moovLogo from "@/assets/moov-africa.jpg.asset.json";
+import personAminata from "@/assets/person-aminata.jpg.asset.json";
+import personMariama from "@/assets/person-mariama.jpg.asset.json";
+import personIbrahim from "@/assets/person-ibrahim.jpg.asset.json";
+import personFatou from "@/assets/person-fatou.jpg.asset.json";
+import communityImg from "@/assets/community-celebration.jpg.asset.json";
+
+// Positions figées des particules pour éviter les erreurs d'hydratation SSR
+const PARTICLES = Array.from({ length: 30 }, (_, i) => {
+  const s = Math.sin(i * 12.9898) * 43758.5453;
+  const s2 = Math.sin(i * 78.233) * 43758.5453;
+  const s3 = Math.sin(i * 39.346) * 43758.5453;
+  const s4 = Math.sin(i * 94.673) * 43758.5453;
+  return {
+    left: ((s - Math.floor(s)) * 100).toFixed(2),
+    top: ((s2 - Math.floor(s2)) * 100).toFixed(2),
+    dur: 2 + (s3 - Math.floor(s3)) * 3,
+    delay: (s4 - Math.floor(s4)) * 2,
+  };
+});
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -48,13 +67,13 @@ function Index() {
       {/* HERO */}
       <section className="relative overflow-hidden sun-gradient text-white">
         <div className="absolute inset-0 opacity-30 pointer-events-none">
-          {Array.from({ length: 30 }).map((_, i) => (
+          {PARTICLES.map((p, i) => (
             <motion.div
               key={i}
               className="absolute h-1 w-1 rounded-full bg-gold"
-              style={{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%` }}
+              style={{ left: `${p.left}%`, top: `${p.top}%` }}
               animate={{ opacity: [0.2, 1, 0.2], scale: [1, 1.5, 1] }}
-              transition={{ duration: 2 + Math.random() * 3, repeat: Infinity, delay: Math.random() * 2 }}
+              transition={{ duration: p.dur, repeat: Infinity, delay: p.delay }}
             />
           ))}
         </div>
@@ -114,7 +133,7 @@ function Index() {
               data-flag="Faux témoignage"
             >
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-full bg-gradient-to-br from-amber-300 to-orange-500" />
+                <img src={personAminata.url} alt="Aminata Diop" className="h-12 w-12 rounded-full object-cover ring-2 ring-gold" />
                 <div>
                   <div className="text-sm font-bold">Aminata Diop</div>
                   <div className="text-xs text-muted-foreground">+1 250 000 FCFA en 60 jours</div>
