@@ -257,15 +257,15 @@ function Index() {
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { n: "Mariama Sow", c: "Dakar", q: "J'ai démarré avec 30 000 FCFA. En 2 mois j'ai pu rembourser ma machine à coudre et lancer mon atelier.", g: 198_000 },
-              { n: "Ibrahim Konaté", c: "Abidjan", q: "Le retrait via Wave est instantané. Je suis passé du pack Or au Diamant après 1 mois.", g: 4_500_000 },
-              { n: "Fatou N'diaye", c: "Bamako", q: "Une équipe pro, des gains réguliers. Je recommande à tous mes proches grâce au parrainage.", g: 780_000 },
+              { n: "Mariama Sow", c: "Dakar", q: "J'ai démarré avec 30 000 FCFA. En 2 mois j'ai pu rembourser ma machine à coudre et lancer mon atelier.", g: 198_000, img: personMariama.url },
+              { n: "Ibrahim Konaté", c: "Abidjan", q: "Le retrait via Wave est instantané. Je suis passé du pack Or au Diamant après 1 mois.", g: 4_500_000, img: personIbrahim.url },
+              { n: "Fatou N'diaye", c: "Bamako", q: "Une équipe pro, des gains réguliers. Je recommande à tous mes proches grâce au parrainage.", g: 780_000, img: personFatou.url },
             ].map((t, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="rounded-2xl bg-white/5 border border-white/10 p-6 backdrop-blur">
                 <div className="text-gold mb-3">★★★★★</div>
                 <p className="text-sm text-white/80">"{t.q}"</p>
                 <div className="mt-5 flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-amber-300 to-orange-500" />
+                  <img src={t.img} alt={t.n} loading="lazy" className="h-12 w-12 rounded-full object-cover ring-2 ring-gold/60" />
                   <div>
                     <div className="font-bold">{t.n}</div>
                     <div className="text-xs text-white/60">{t.c} · A gagné {fmt(t.g)}</div>
