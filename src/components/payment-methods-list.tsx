@@ -58,7 +58,6 @@ interface PaymentMethodsListProps {
 export function PaymentMethodsList({ mode = "deposit" }: PaymentMethodsListProps) {
   const isDeposit = mode === "deposit";
   const title = isDeposit ? "Comment déposer" : "Comment retirer";
-  const actionIcon = isDeposit ? ArrowDownLeft : ArrowUpRight;
   const steps = (id: "wave" | "orange" | "moov") => INSTRUCTIONS[id][isDeposit ? "deposit" : "withdraw"];
 
   return (
