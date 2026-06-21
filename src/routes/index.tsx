@@ -9,6 +9,25 @@ import { PANELS, fmt } from "@/lib/demo-store";
 import waveLogo from "@/assets/wave.jpg.asset.json";
 import orangeLogo from "@/assets/orange-money.jpg.asset.json";
 import moovLogo from "@/assets/moov-africa.jpg.asset.json";
+import personAminata from "@/assets/person-aminata.jpg.asset.json";
+import personMariama from "@/assets/person-mariama.jpg.asset.json";
+import personIbrahim from "@/assets/person-ibrahim.jpg.asset.json";
+import personFatou from "@/assets/person-fatou.jpg.asset.json";
+import communityImg from "@/assets/community-celebration.jpg.asset.json";
+
+// Positions figées des particules pour éviter les erreurs d'hydratation SSR
+const PARTICLES = Array.from({ length: 30 }, (_, i) => {
+  const s = Math.sin(i * 12.9898) * 43758.5453;
+  const s2 = Math.sin(i * 78.233) * 43758.5453;
+  const s3 = Math.sin(i * 39.346) * 43758.5453;
+  const s4 = Math.sin(i * 94.673) * 43758.5453;
+  return {
+    left: ((s - Math.floor(s)) * 100).toFixed(2),
+    top: ((s2 - Math.floor(s2)) * 100).toFixed(2),
+    dur: 2 + (s3 - Math.floor(s3)) * 3,
+    delay: (s4 - Math.floor(s4)) * 2,
+  };
+});
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -48,13 +67,13 @@ function Index() {
       {/* HERO */}
       <section className="relative overflow-hidden sun-gradient text-white">
         <div className="absolute inset-0 opacity-30 pointer-events-none">
-          {Array.from({ length: 30 }).map((_, i) => (
+          {PARTICLES.map((p, i) => (
             <motion.div
               key={i}
               className="absolute h-1 w-1 rounded-full bg-gold"
-              style={{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%` }}
+              style={{ left: `${p.left}%`, top: `${p.top}%` }}
               animate={{ opacity: [0.2, 1, 0.2], scale: [1, 1.5, 1] }}
-              transition={{ duration: 2 + Math.random() * 3, repeat: Infinity, delay: Math.random() * 2 }}
+              transition={{ duration: p.dur, repeat: Infinity, delay: p.delay }}
             />
           ))}
         </div>
@@ -114,7 +133,7 @@ function Index() {
               data-flag="Faux témoignage"
             >
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-full bg-gradient-to-br from-amber-300 to-orange-500" />
+                <img src={personAminata.url} alt="Aminata Diop" className="h-12 w-12 rounded-full object-cover ring-2 ring-gold" />
                 <div>
                   <div className="text-sm font-bold">Aminata Diop</div>
                   <div className="text-xs text-muted-foreground">+1 250 000 FCFA en 60 jours</div>
@@ -208,6 +227,66 @@ function Index() {
         </div>
       </section>
 
+      {/* COMMUNITY */}
+      <section className="mx-auto max-w-7xl px-4 py-24 ponzi-flag" data-flag="Imagerie émotionnelle = levier classique d'arnaque pour créer un sentiment d'appartenance">
+        <div className="grid lg:grid-cols-2 gap-10 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative"
+          >
+            <div className="absolute -inset-4 bg-gradient-to-br from-gold/30 to-primary/30 blur-2xl rounded-3xl" />
+            <img
+              src={communityImg.url}
+              alt="Communauté Fadoul Investment célébrant ensemble"
+              loading="lazy"
+              className="relative rounded-3xl shadow-2xl object-cover w-full h-[420px]"
+            />
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 3, repeat: Infinity }}
+              className="absolute -bottom-5 -right-5 rounded-2xl bg-card border border-border p-4 shadow-xl flex items-center gap-3"
+            >
+              <div className="flex -space-x-2">
+                <img src={personAminata.url} alt="" className="h-9 w-9 rounded-full ring-2 ring-card object-cover" />
+                <img src={personIbrahim.url} alt="" className="h-9 w-9 rounded-full ring-2 ring-card object-cover" />
+                <img src={personFatou.url} alt="" className="h-9 w-9 rounded-full ring-2 ring-card object-cover" />
+              </div>
+              <div className="text-xs">
+                <div className="font-bold">+48 392 investisseurs</div>
+                <div className="text-muted-foreground">rejoignent chaque mois</div>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          <div>
+            <div className="text-xs font-bold uppercase tracking-widest text-primary">Notre communauté</div>
+            <h2 className="mt-2 text-3xl md:text-5xl font-bold leading-tight">
+              Une famille qui <span className="gold-text">prospère ensemble</span>
+            </h2>
+            <p className="mt-4 text-muted-foreground text-lg">
+              De Dakar à Cotonou, des milliers d'investisseurs ont changé leur quotidien grâce au soleil africain. Rejoignez une communauté soudée, joyeuse et engagée.
+            </p>
+            <div className="mt-6 grid grid-cols-3 gap-3">
+              {[personAminata, personMariama, personFatou].map((p, i) => (
+                <motion.div
+                  key={i}
+                  whileHover={{ scale: 1.05, rotate: i % 2 ? 2 : -2 }}
+                  className="relative aspect-square rounded-2xl overflow-hidden ring-1 ring-border shadow-md"
+                >
+                  <img src={p.url} alt="" loading="lazy" className="h-full w-full object-cover" />
+                </motion.div>
+              ))}
+            </div>
+            <Link to="/auth" className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-emerald-700 px-6 py-3 font-semibold text-white shadow-lg hover:scale-105 transition">
+              <Users className="h-4 w-4" /> Rejoindre la communauté
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* PAYMENT METHODS */}
       <section className="mx-auto max-w-7xl px-4 py-24">
         <div className="text-center mb-10">
@@ -238,15 +317,15 @@ function Index() {
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { n: "Mariama Sow", c: "Dakar", q: "J'ai démarré avec 30 000 FCFA. En 2 mois j'ai pu rembourser ma machine à coudre et lancer mon atelier.", g: 198_000 },
-              { n: "Ibrahim Konaté", c: "Abidjan", q: "Le retrait via Wave est instantané. Je suis passé du pack Or au Diamant après 1 mois.", g: 4_500_000 },
-              { n: "Fatou N'diaye", c: "Bamako", q: "Une équipe pro, des gains réguliers. Je recommande à tous mes proches grâce au parrainage.", g: 780_000 },
+              { n: "Mariama Sow", c: "Dakar", q: "J'ai démarré avec 30 000 FCFA. En 2 mois j'ai pu rembourser ma machine à coudre et lancer mon atelier.", g: 198_000, img: personMariama.url },
+              { n: "Ibrahim Konaté", c: "Abidjan", q: "Le retrait via Wave est instantané. Je suis passé du pack Or au Diamant après 1 mois.", g: 4_500_000, img: personIbrahim.url },
+              { n: "Fatou N'diaye", c: "Bamako", q: "Une équipe pro, des gains réguliers. Je recommande à tous mes proches grâce au parrainage.", g: 780_000, img: personFatou.url },
             ].map((t, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="rounded-2xl bg-white/5 border border-white/10 p-6 backdrop-blur">
                 <div className="text-gold mb-3">★★★★★</div>
                 <p className="text-sm text-white/80">"{t.q}"</p>
                 <div className="mt-5 flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-amber-300 to-orange-500" />
+                  <img src={t.img} alt={t.n} loading="lazy" className="h-12 w-12 rounded-full object-cover ring-2 ring-gold/60" />
                   <div>
                     <div className="font-bold">{t.n}</div>
                     <div className="text-xs text-white/60">{t.c} · A gagné {fmt(t.g)}</div>
