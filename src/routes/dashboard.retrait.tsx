@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, Loader2, Clock } from "lucide-react";
 import { useDemo } from "@/lib/demo-mode";
 import { withdraw, fmt, loadState } from "@/lib/demo-store";
+import { PaymentMethodsList } from "@/components/payment-methods-list";
 import waveLogo from "@/assets/wave.jpg.asset.json";
 import orangeLogo from "@/assets/orange-money.jpg.asset.json";
 import moovLogo from "@/assets/moov-africa.jpg.asset.json";
@@ -103,6 +104,10 @@ function RetraitPage() {
             </motion.div>
           )}
         </AnimatePresence>
+      </div>
+
+      <div className="mt-6">
+        <PaymentMethodsList />
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { deposit, fmt } from "@/lib/demo-store";
+import { PaymentMethodsList } from "@/components/payment-methods-list";
 import waveLogo from "@/assets/wave.jpg.asset.json";
 import orangeLogo from "@/assets/orange-money.jpg.asset.json";
 import moovLogo from "@/assets/moov-africa.jpg.asset.json";
@@ -95,6 +96,10 @@ function DepotPage() {
             </motion.div>
           )}
         </AnimatePresence>
+      </div>
+
+      <div className="mt-6">
+        <PaymentMethodsList />
       </div>
     </div>
   );
