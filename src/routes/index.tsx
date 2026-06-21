@@ -213,12 +213,12 @@ function Index() {
         </div>
         <div className="grid sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
           {[
-            { name: "Wave", color: "from-blue-400 to-blue-600", emoji: "🌊" },
-            { name: "Orange Money", color: "from-orange-400 to-orange-600", emoji: "🟠" },
-            { name: "Moov Money", color: "from-cyan-400 to-teal-600", emoji: "💠" },
+            { name: "Wave", color: "from-sky-400 to-sky-600", logo: waveLogo.url },
+            { name: "Orange Money", color: "from-neutral-800 to-black", logo: orangeLogo.url },
+            { name: "Moov Africa", color: "from-blue-600 to-blue-800", logo: moovLogo.url },
           ].map((m) => (
             <div key={m.name} className={`rounded-2xl bg-gradient-to-br ${m.color} p-8 text-white text-center shadow-lg`}>
-              <div className="text-4xl mb-2">{m.emoji}</div>
+              <div className="h-16 w-16 mx-auto mb-3 rounded-xl overflow-hidden bg-white/10 ring-1 ring-white/20"><img src={m.logo} alt={m.name} className="h-full w-full object-cover" /></div>
               <div className="font-bold text-lg">{m.name}</div>
               <div className="text-xs opacity-80 mt-1">Instantané · 24/7</div>
             </div>

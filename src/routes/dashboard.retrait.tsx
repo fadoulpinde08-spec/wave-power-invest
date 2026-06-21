@@ -4,15 +4,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, Loader2, Clock } from "lucide-react";
 import { useDemo } from "@/lib/demo-mode";
 import { withdraw, fmt, loadState } from "@/lib/demo-store";
+import waveLogo from "@/assets/wave.jpg.asset.json";
+import orangeLogo from "@/assets/orange-money.jpg.asset.json";
+import moovLogo from "@/assets/moov-africa.jpg.asset.json";
 
 export const Route = createFileRoute("/dashboard/retrait")({
   component: RetraitPage,
 });
 
 const METHODS = [
-  { id: "wave" as const, name: "Wave", color: "from-blue-500 to-blue-700", emoji: "🌊" },
-  { id: "orange" as const, name: "Orange Money", color: "from-orange-500 to-orange-700", emoji: "🟠" },
-  { id: "moov" as const, name: "Moov Money", color: "from-cyan-500 to-teal-700", emoji: "💠" },
+  { id: "wave" as const, name: "Wave", color: "from-sky-400 to-sky-600", logo: waveLogo.url },
+  { id: "orange" as const, name: "Orange Money", color: "from-neutral-800 to-black", logo: orangeLogo.url },
+  { id: "moov" as const, name: "Moov Africa", color: "from-blue-600 to-blue-800", logo: moovLogo.url },
 ];
 
 function RetraitPage() {
