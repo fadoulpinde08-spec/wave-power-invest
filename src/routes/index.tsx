@@ -227,6 +227,66 @@ function Index() {
         </div>
       </section>
 
+      {/* COMMUNITY */}
+      <section className="mx-auto max-w-7xl px-4 py-24 ponzi-flag" data-flag="Imagerie émotionnelle = levier classique d'arnaque pour créer un sentiment d'appartenance">
+        <div className="grid lg:grid-cols-2 gap-10 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative"
+          >
+            <div className="absolute -inset-4 bg-gradient-to-br from-gold/30 to-primary/30 blur-2xl rounded-3xl" />
+            <img
+              src={communityImg.url}
+              alt="Communauté Fadoul Investment célébrant ensemble"
+              loading="lazy"
+              className="relative rounded-3xl shadow-2xl object-cover w-full h-[420px]"
+            />
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 3, repeat: Infinity }}
+              className="absolute -bottom-5 -right-5 rounded-2xl bg-card border border-border p-4 shadow-xl flex items-center gap-3"
+            >
+              <div className="flex -space-x-2">
+                <img src={personAminata.url} alt="" className="h-9 w-9 rounded-full ring-2 ring-card object-cover" />
+                <img src={personIbrahim.url} alt="" className="h-9 w-9 rounded-full ring-2 ring-card object-cover" />
+                <img src={personFatou.url} alt="" className="h-9 w-9 rounded-full ring-2 ring-card object-cover" />
+              </div>
+              <div className="text-xs">
+                <div className="font-bold">+48 392 investisseurs</div>
+                <div className="text-muted-foreground">rejoignent chaque mois</div>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          <div>
+            <div className="text-xs font-bold uppercase tracking-widest text-primary">Notre communauté</div>
+            <h2 className="mt-2 text-3xl md:text-5xl font-bold leading-tight">
+              Une famille qui <span className="gold-text">prospère ensemble</span>
+            </h2>
+            <p className="mt-4 text-muted-foreground text-lg">
+              De Dakar à Cotonou, des milliers d'investisseurs ont changé leur quotidien grâce au soleil africain. Rejoignez une communauté soudée, joyeuse et engagée.
+            </p>
+            <div className="mt-6 grid grid-cols-3 gap-3">
+              {[personAminata, personMariama, personFatou].map((p, i) => (
+                <motion.div
+                  key={i}
+                  whileHover={{ scale: 1.05, rotate: i % 2 ? 2 : -2 }}
+                  className="relative aspect-square rounded-2xl overflow-hidden ring-1 ring-border shadow-md"
+                >
+                  <img src={p.url} alt="" loading="lazy" className="h-full w-full object-cover" />
+                </motion.div>
+              ))}
+            </div>
+            <Link to="/auth" className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-emerald-700 px-6 py-3 font-semibold text-white shadow-lg hover:scale-105 transition">
+              <Users className="h-4 w-4" /> Rejoindre la communauté
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* PAYMENT METHODS */}
       <section className="mx-auto max-w-7xl px-4 py-24">
         <div className="text-center mb-10">
