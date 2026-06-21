@@ -107,7 +107,7 @@ function RetraitPage() {
       </div>
 
       <div className="mt-6">
-        <PaymentMethodsList />
+        <PaymentMethodsList mode="withdraw" />
       </div>
     </div>
   );

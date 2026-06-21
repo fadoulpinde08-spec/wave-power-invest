@@ -99,7 +99,7 @@ function DepotPage() {
       </div>
 
       <div className="mt-6">
-        <PaymentMethodsList />
+        <PaymentMethodsList mode="deposit" />
       </div>
     </div>
   );
