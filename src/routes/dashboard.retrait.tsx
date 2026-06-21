@@ -4,15 +4,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, Loader2, Clock } from "lucide-react";
 import { useDemo } from "@/lib/demo-mode";
 import { withdraw, fmt, loadState } from "@/lib/demo-store";
+import waveLogo from "@/assets/wave.jpg.asset.json";
+import orangeLogo from "@/assets/orange-money.jpg.asset.json";
+import moovLogo from "@/assets/moov-africa.jpg.asset.json";
 
 export const Route = createFileRoute("/dashboard/retrait")({
   component: RetraitPage,
 });
 
 const METHODS = [
-  { id: "wave" as const, name: "Wave", color: "from-blue-500 to-blue-700", emoji: "🌊" },
-  { id: "orange" as const, name: "Orange Money", color: "from-orange-500 to-orange-700", emoji: "🟠" },
-  { id: "moov" as const, name: "Moov Money", color: "from-cyan-500 to-teal-700", emoji: "💠" },
+  { id: "wave" as const, name: "Wave", color: "from-sky-400 to-sky-600", logo: waveLogo.url },
+  { id: "orange" as const, name: "Orange Money", color: "from-neutral-800 to-black", logo: orangeLogo.url },
+  { id: "moov" as const, name: "Moov Africa", color: "from-blue-600 to-blue-800", logo: moovLogo.url },
 ];
 
 function RetraitPage() {
@@ -50,8 +53,8 @@ function RetraitPage() {
                   {METHODS.map((m) => (
                     <button key={m.id} type="button" onClick={() => setMethod(m.id)}
                       className={`rounded-xl bg-gradient-to-br ${m.color} text-white p-4 text-center transition ${method === m.id ? "ring-4 ring-primary scale-105" : "opacity-70 hover:opacity-100"}`}>
-                      <div className="text-2xl">{m.emoji}</div>
-                      <div className="mt-1 text-xs font-semibold">{m.name}</div>
+                      <div className="h-10 w-10 mx-auto rounded-lg overflow-hidden bg-white/10 ring-1 ring-white/20"><img src={m.logo} alt={m.name} className="h-full w-full object-cover" /></div>
+                      <div className="mt-2 text-xs font-semibold">{m.name}</div>
                     </button>
                   ))}
                 </div>
